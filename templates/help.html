@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="text-center mb-4">
+    <h2 class="mb-3">📖 Hướng dẫn sử dụng</h2>
+    <p class="lead">Điền thông tin bệnh nhân đầy đủ để dự đoán nguy cơ mắc bệnh tim.</p>
+</div>
+
+<div class="row g-4">
+    <!-- Tuổi -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/age.png') }}" class="card-img-top" alt="Tuổi">
+            <div class="card-body">
+                <h5 class="card-title">Tuổi</h5>
+                <p class="card-text">Số tuổi của bệnh nhân. Nhập từ 20 đến 100.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Giới tính -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/sex.png') }}" class="card-img-top" alt="Giới tính">
+            <div class="card-body">
+                <h5 class="card-title">Giới tính</h5>
+                <p class="card-text">1 = Nam, 0 = Nữ.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loại đau ngực -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/cp.png') }}" class="card-img-top" alt="Chest Pain">
+            <div class="card-body">
+                <h5 class="card-title">CP (Chest Pain)</h5>
+                <p class="card-text">Giá trị 0–3 mô tả loại đau ngực.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nhịp tim tối đa -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/thalach.png') }}" class="card-img-top" alt="Thalach">
+            <div class="card-body">
+                <h5 class="card-title">Thalach</h5>
+                <p class="card-text">Nhịp tim tối đa đạt được khi gắng sức.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Đau khi gắng sức -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/exang.png') }}" class="card-img-top" alt="Exang">
+            <div class="card-body">
+                <h5 class="card-title">Exang</h5>
+                <p class="card-text">1 = Có đau khi gắng sức, 0 = Không.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cholesterol -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='images/chol.png') }}" class="card-img-top" alt="Chol">
+            <div class="card-body">
+                <h5 class="card-title">Chol</h5>
+                <p class="card-text">Nồng độ cholesterol trong máu (mg/dl).</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

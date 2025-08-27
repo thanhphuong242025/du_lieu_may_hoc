@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dự đoán bệnh tim</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Navbar hiện đại */
+    .navbar-custom {
+      background-color: #111; /* đen sậm */
+    }
+    .navbar-brand {
+      color: #ff4d4d !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    .navbar-nav {
+      justify-content: flex-start; /* menu lệch trái */
+      margin-left: 300px; /* cách lề trái 20px */
+    }
+    .navbar-nav .nav-item {
+      margin: 0 10px; /* khoảng cách giữa menu */
+    }
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #ff4d4d !important;
+    }
+    .navbar-nav .nav-link.active {
+      color: #ff4d4d !important;
+      background-color: rgba(255,77,77,0.1);
+      border-radius: 0.3rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #c2e4ff;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Container content */
+    .container-main {
+      min-height: 80vh;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('index') }}">❤️ HeartApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{{ url_for('index') }}">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/predict' %}active{% endif %}" href="{{ url_for('predict') }}">Dự đoán</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/help' %}active{% endif %}" href="{{ url_for('help_page') }}">Hướng dẫn</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Nội dung chính -->
+  <div class="container container-main">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-muted py-3 mt-5">
+    <p>© 2025 Dự báo bệnh tim | Nhóm 7</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

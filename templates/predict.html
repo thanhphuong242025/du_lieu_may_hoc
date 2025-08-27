@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Nhập thông tin người dùng</h2>
+
+<div class="col-lg-8 col-md-10 mx-auto">
+<form method="post" id="patientForm">
+
+  <!-- Nhóm 1: Thông tin cá nhân -->
+  <div class="card mb-3 border-danger" style="background-color:#fff0f0;">
+    <div class="card-header fw-bold">👤 Thông tin cá nhân</div>
+    <div class="card-body row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Tuổi </label>
+        <input type="number" class="form-control form-control-sm" name="age" id="age" min="20" max="100"
+               value="{{ request.form.age if request.form.age and not clear else '' }}" required autocomplete="off">
+        <small class="text-muted">Khoảng 20 – 100 tuổi</small>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Giới tính </label>
+        <select class="form-select form-select-sm" name="sex" id="sex" required>
+          <option value="1" {% if request.form.sex == '1' and not clear %}selected{% endif %}>Nam</option>
+          <option value="0" {% if request.form.sex == '0' and not clear %}selected{% endif %}>Nữ</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nhóm 2: Triệu chứng -->
+  <div class="card mb-3 border-warning" style="background-color:#fffbe0;">
+    <div class="card-header fw-bold">💓 Triệu chứng</div>
+    <div class="card-body row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Loại đau ngực </label>
+        <select class="form-select form-select-sm" name="cp" id="cp" required>
+          <option value="0" {% if request.form.cp == '0' and not clear %}selected{% endif %}>Đau điển hình</option>
+          <option value="1" {% if request.form.cp == '1' and not clear %}selected{% endif %}>Đau không điển hình</option>
+          <option value="2" {% if request.form.cp == '2' and not clear %}selected{% endif %}>Đau không do tim</option>
+          <option value="3" {% if request.form.cp == '3' and not clear %}selected{% endif %}>Không đau</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Đau khi gắng sức </label>
+        <select class="form-select form-select-sm" name="exang" id="exang" required>
+          <option value="1" {% if request.form.exang == '1' and not clear %}selected{% endif %}>Có</option>
+          <option value="0" {% if request.form.exang == '0' and not clear %}selected{% endif %}>Không</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nhóm 3: Chỉ số tim mạch -->
+  <div class="card mb-3 border-success" style="background-color:#e8fff0;">
+    <div class="card-header fw-bold">🫀 Chỉ số tim mạch</div>
+    <div class="card-body row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Huyết áp khi nghỉ</label>
+        <input type="number" class="form-control form-control-sm" name="trestbps" id="trestbps" min="90" max="200"
+               value="{{ request.form.trestbps if request.form.trestbps and not clear else '' }}" required autocomplete="off">
+        <small class="text-muted">Khoảng 90 – 200 mmHg</small>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Cholesterol</label>
+        <input type="number" class="form-control form-control-sm" name="chol" id="chol" min="100" max="400"
+               value="{{ request.form.chol if request.form.chol and not clear else '' }}" required autocomplete="off">
+        <small class="text-muted">Khoảng 100 – 400 mg/dl</small>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Nhịp tim tối đa</label>
+        <input type="number" class="form-control form-control-sm" name="thalach" id="thalach" min="60" max="220"
+               value="{{ request.form.thalach if request.form.thalach and not clear else '' }}" required autocomplete="off">
+        <small class="text-muted">Khoảng 60 – 220 bpm</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mb-2">
+    <button type="submit" class="btn btn-danger btn-lg fw-bold"> Dự đoán bệnh tim</button>
+    <button type="button" class="btn btn-secondary btn-lg fw-bold" id="clearBtn">Xóa hết</button>
+  </div>
+</form>
+</div>
+
+<!-- Modal kết quả -->
+{% if result %}
+<div class="modal fade show" id="resultModal" tabindex="-1" style="display:block; background-color: rgba(0,0,0,0.5);" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Kết quả dự đoán</h5>
+        <button type="button" class="btn-close" onclick="closeModal()"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>{{ result }}</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<script>
+function closeModal() {
+    document.getElementById('resultModal').style.display = 'none';
+}
+
+// JS xóa form mà không reload page
+document.getElementById('clearBtn').addEventListener('click', function() {
+    const form = document.getElementById('patientForm');
+    form.querySelectorAll('input').forEach(el => el.value = '');
+    form.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
+});
+</script>
+{% endblock %}

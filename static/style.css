@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f9f9f9;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+nav a:hover {
+  color: darkred;
+}
+
+form label {
+  display: block;
+  margin: 8px 0;
+}
+
+button {
+  padding: 8px 15px;
+  background: crimson;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: darkred;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: gray;
+}
