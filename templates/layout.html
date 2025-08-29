@@ -18,11 +18,11 @@
       font-size: 1.5rem;
     }
     .navbar-nav {
-      justify-content: flex-start; /* menu lệch trái */
-      margin-left: 300px; /* cách lề trái 20px */
+      justify-content: flex-start;
+      margin-left: 300px;
     }
     .navbar-nav .nav-item {
-      margin: 0 10px; /* khoảng cách giữa menu */
+      margin: 0 10px;
     }
     .navbar-nav .nav-link {
       color: #fff !important;
@@ -70,9 +70,7 @@
           <li class="nav-item">
             <a class="nav-link {% if request.path == '/predict' %}active{% endif %}" href="{{ url_for('predict') }}">Dự đoán</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if request.path == '/help' %}active{% endif %}" href="{{ url_for('help_page') }}">Hướng dẫn</a>
-          </li>
+          <!-- Xóa hẳn link Hướng dẫn -->
         </ul>
       </div>
     </div>

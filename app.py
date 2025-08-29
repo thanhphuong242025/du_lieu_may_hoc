@@ -30,7 +30,6 @@ def predict():
 
             # Dự đoán trực tiếp
             prediction = model.predict(sample)[0]
-            prediction = 1 - prediction
             result = " ⚠️ Phát hiện dấu hiệu tiềm ẩn về tim mạch. Hãy thăm khám bác sĩ để đảm bảo sức khỏe." if prediction == 1 else " 💚 Hiện tại tim mạch bạn ổn định. Hãy tiếp tục duy trì lối sống lành mạnh."
 
         except Exception as e:
